@@ -1,0 +1,32 @@
+{
+    "name": "dercoder/omnipay-webmoney",
+    "type": "library",
+    "description": "WebMoney driver for the Omnipay payment processing library",
+    "keywords": [
+        "webmoney",
+        "gateway",
+        "merchant",
+        "omnipay",
+        "pay",
+        "payment"
+    ],
+    "homepage": "https://github.com/dercoder/omnipay-webmoney",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Omnipay\\WebMoney\\": "src/"
+        }
+    },
+    "require": {
+        "omnipay/common": "~2.3"
+    },
+    "require-dev": {
+        "omnipay/tests": "~2.0",
+        "satooshi/php-coveralls": "dev-master"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
+}

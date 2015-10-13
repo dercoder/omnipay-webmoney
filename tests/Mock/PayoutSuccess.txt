@@ -1,0 +1,7 @@
+HTTP/1.1 200 OK
+Cache-Control: private
+Content-Type: text/xml; Charset=windows-1251
+Server: Microsoft-IIS/8.5
+Date: Tue, 06 Oct 2015 10:00:00 GMT
+
+<?xml version="1.0"?><w3s.response><reqn>1444748378</reqn><operation id="1242314716" ts="1242314716"><tranid>1444111666</tranid><pursesrc>Z123428476799</pursesrc><pursedest>Z123428476700</pursedest><amount>12.46</amount><comiss>12.46</comiss><opertype>4</opertype><period>60</period><wminvid>0</wminvid><desc>Payout</desc><datecrt>20151013 17:59:39</datecrt><dateupd>20151013 17:59:39</dateupd></operation><retval>0</retval><retdesc></retdesc></w3s.response>

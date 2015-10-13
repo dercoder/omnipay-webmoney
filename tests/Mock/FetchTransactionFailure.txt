@@ -1,0 +1,7 @@
+HTTP/1.1 200 OK
+Cache-Control: private
+Content-Type: text/xml; Charset=windows-1251
+Server: Microsoft-IIS/8.5
+Date: Tue, 06 Oct 2015 10:00:00 GMT
+
+<?xml version="1.0"?><merchant.response><retval>7</retval><retdesc>Payment with lmi_payment_no number not found for this merchant purse:7 step=50</retdesc></merchant.response>

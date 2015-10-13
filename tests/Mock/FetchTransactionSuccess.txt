@@ -1,0 +1,7 @@
+HTTP/1.1 200 OK
+Cache-Control: private
+Content-Type: text/xml; Charset=windows-1251
+Server: Microsoft-IIS/8.5
+Date: Tue, 06 Oct 2015 10:00:00 GMT
+
+<?xml version="1.0"?><merchant.response><operation wmtransid="1234566789" wminvoiceid="987654321"><amount>12.46</amount><operdate>20151006 09:02:28</operdate><purpose>Transaction Description</purpose><pursefrom>Z987654321000</pursefrom><wmidfrom>404521188999</wmidfrom><capitallerflag>0</capitallerflag><enumflag>3</enumflag><IPAddress>127.0.0.1</IPAddress><telepat_phone></telepat_phone><telepat_paytype>null</telepat_paytype><paymer_number></paymer_number><paymer_email></paymer_email><paymer_type>null</paymer_type><cashier_number></cashier_number><cashier_date></cashier_date><cashier_amount>-1</cashier_amount><sdp_type></sdp_type><sdp_phone></sdp_phone><payer_countryid>AZ</payer_countryid><payer_pcountryid>  </payer_pcountryid></operation><retval>0</retval><retdesc></retdesc></merchant.response>
