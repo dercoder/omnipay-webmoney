@@ -23,7 +23,7 @@ class PayoutRequestTest extends TestCase
         $httpClient->addSubscriber($mockPlugin);
 
         $this->request = new PayoutRequest($httpClient, $this->getHttpRequest());
-        $this->request->initialize([
+        $this->request->initialize(array(
             'webMoneyId' => '811333344777',
             'merchantPurse' => 'Z123428476799',
             'secretKey' => '226778888',
@@ -39,7 +39,7 @@ class PayoutRequestTest extends TestCase
             'description' => 'Payout',
             'currency' => 'USD',
             'amount' => '12.46'
-        ]);
+        ));
     }
 
     public function testException()
