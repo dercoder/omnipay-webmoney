@@ -38,16 +38,16 @@ class GatewayTest extends GatewayTestCase
 
     public function testFetchTransaction()
     {
-        $request = $this->gateway->fetchTransaction([
+        $request = $this->gateway->fetchTransaction(array(
             'transactionId' => '1444212666'
-        ]);
+        ));
 
         $this->assertSame('1444212666', $request->getTransactionId());
     }
 
     public function testPayout()
     {
-        $request = $this->gateway->payout([
+        $request = $this->gateway->payout(array(
             'transactionId' => '1444111666',
             'requestNumber' => '111222333',
             'customerPurse' => 'Z123428476700',
@@ -57,7 +57,7 @@ class GatewayTest extends GatewayTestCase
             'onlyAuth' => false,
             'description' => 'Payout',
             'amount' => '12.46'
-        ]);
+        ));
 
         $this->assertSame('1444111666', $request->getTransactionId());
         $this->assertSame('111222333', $request->getRequestNumber());

@@ -270,16 +270,16 @@ class PayoutRequest extends AbstractRequest
 
     public function sendData($data)
     {
-        $this->httpClient->setConfig([
-            'curl.options' => [
+        $this->httpClient->setConfig(array(
+            'curl.options' => array(
                 CURLOPT_CAINFO => $this->getCertificatePath('WMUsedRootCAs.crt'),
                 CURLOPT_SSLCERT => $this->getSslFile(),
                 CURLOPT_SSLKEY => $this->getSslKey(),
                 CURLOPT_SSLVERSION => 1,
                 CURLOPT_SSL_VERIFYHOST => 2,
                 CURLOPT_SSL_VERIFYPEER => 1,
-            ],
-        ]);
+            ),
+        ));
 
         $httpResponse = $this->httpClient->post($this->endpoint, null, $data)->send();
 
