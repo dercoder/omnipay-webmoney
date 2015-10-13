@@ -2,6 +2,8 @@
 
 namespace Omnipay\WebMoney\Message;
 
+use Omnipay\Common\Exception\InvalidRequestException;
+
 /**
  * WebMoney Payout Request
  * http://wiki.wmtransfer.com/projects/webmoney/wiki/Interface_X2.
@@ -203,8 +205,13 @@ class PayoutRequest extends AbstractRequest
             'sslKey',
             'transactionId',
             'description',
+            'currency',
             'amount'
         );
+
+        if ($this->getCurrencyByPurse($this->getMerchantPurse()) !== $this->getCurrency()) {
+            throw new InvalidRequestException('Invalid currency for this merchant purse');
+        }
 
         $document = new \DOMDocument('1.0', 'utf-8');
         $document->formatOutput = false;

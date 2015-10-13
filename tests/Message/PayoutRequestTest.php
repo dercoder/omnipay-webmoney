@@ -23,7 +23,7 @@ class PayoutRequestTest extends TestCase
         $httpClient->addSubscriber($mockPlugin);
 
         $this->request = new PayoutRequest($httpClient, $this->getHttpRequest());
-        $this->request->initialize(array(
+        $this->request->initialize([
             'webMoneyId' => '811333344777',
             'merchantPurse' => 'Z123428476799',
             'secretKey' => '226778888',
@@ -37,8 +37,20 @@ class PayoutRequestTest extends TestCase
             'invoiceId' => '12345678',
             'onlyAuth' => false,
             'description' => 'Payout',
+            'currency' => 'USD',
             'amount' => '12.46'
-        ));
+        ]);
+    }
+
+    public function testException()
+    {
+        $this->request->setCurrency('EUR');
+
+        try {
+            $this->request->getData();
+        } catch (\Exception $e) {
+            $this->assertEquals('Omnipay\Common\Exception\InvalidRequestException', get_class($e));
+        }
     }
 
     public function testGetData()
