@@ -154,7 +154,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     /**
      * Redirect method conversion table.
      */
-    private static $_methods = [
+    private static $methodsTable = [
         '1'     => '1',
         '2'     => '2',
         'GET'   => '0',
@@ -172,7 +172,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     public function formatMethod($method)
     {
         $method = strtoupper((string)$method);
-        return isset(self::$_methods[$method]) ? self::$_methods[$method] : '0';
+        return isset(self::$methodsTable[$method]) ? self::$methodsTable[$method] : '0';
     }
 
     /**
