@@ -18,6 +18,8 @@ class PurchaseRequestTest extends TestCase
             'returnUrl' => 'https://www.foodstore.com/success',
             'cancelUrl' => 'https://www.foodstore.com/failure',
             'notifyUrl' => 'https://www.foodstore.com/notify',
+            'returnMethod' => 'POST',
+            'cancelMethod' => 'link',
             'description' => 'Test Transaction',
             'transactionId' => '1234567890',
             'amount' => '14.65',
@@ -48,9 +50,9 @@ class PurchaseRequestTest extends TestCase
         $this->assertSame('2', $data['LMI_SIM_MODE']);
         $this->assertSame('https://www.foodstore.com/notify', $data['LMI_RESULT_URL']);
         $this->assertSame('https://www.foodstore.com/success', $data['LMI_SUCCESS_URL']);
-        $this->assertSame('0', $data['LMI_SUCCESS_METHOD']);
+        $this->assertSame('1', $data['LMI_SUCCESS_METHOD']);
         $this->assertSame('https://www.foodstore.com/failure', $data['LMI_FAIL_URL']);
-        $this->assertSame('0', $data['LMI_FAIL_METHOD']);
+        $this->assertSame('2', $data['LMI_FAIL_METHOD']);
     }
 
     public function testSendData()
