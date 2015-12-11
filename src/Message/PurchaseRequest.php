@@ -39,9 +39,9 @@ class PurchaseRequest extends AbstractRequest
             'LMI_SIM_MODE' => $this->getTestMode() ? '2' : '0',
             'LMI_RESULT_URL' => $this->getNotifyUrl(),
             'LMI_SUCCESS_URL' => $this->getReturnUrl(),
-            'LMI_SUCCESS_METHOD' => '0',
+            'LMI_SUCCESS_METHOD' => $this->getReturnMethod(),
             'LMI_FAIL_URL' => $this->getCancelUrl(),
-            'LMI_FAIL_METHOD' => '0',
+            'LMI_FAIL_METHOD' => $this->getCancelMethod(),
         );
     }
 
