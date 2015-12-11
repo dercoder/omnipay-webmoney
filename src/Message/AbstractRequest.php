@@ -108,6 +108,74 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     }
 
     /**
+     * Get the return method.
+     *
+     * @return string return method
+     */
+    public function getReturnMethod()
+    {
+        return $this->formatMethod($this->getParameter('returnMethod'));
+    }
+
+    /**
+     * Set the return method.
+     *
+     * @param string $value return method
+     *
+     * @return self
+     */
+    public function setReturnMethod($value)
+    {
+        return $this->setParameter('returnMethod', $value);
+    }
+
+    /**
+     * Get the cancel method.
+     *
+     * @return string cancel method
+     */
+    public function getCancelMethod()
+    {
+        return $this->formatMethod($this->getParameter('cancelMethod'));
+    }
+
+    /**
+     * Set the cancel method.
+     *
+     * @param string $value cancel method
+     *
+     * @return self
+     */
+    public function setCancelMethod($value)
+    {
+        return $this->setParameter('cancelMethod', $value);
+    }
+
+    /**
+     * Redirect method conversion table.
+     */
+    private static $_methods = [
+        '1'     => '1',
+        '2'     => '2',
+        'GET'   => '0',
+        'POST'  => '1',
+        'LINK'  => '2',
+    ];
+
+    /**
+     * Converts redirect method to WebMoney code: 0, 1 or 2.
+     *
+     * @param string $method
+     *
+     * @return string
+     */
+    public function formatMethod($method)
+    {
+        $method = strtoupper((string)$method);
+        return isset(self::$_methods[$method]) ? self::$_methods[$method] : '0';
+    }
+
+    /**
      * Get the SSL file.
      *
      * This certificate will be used for the payout request.
