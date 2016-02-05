@@ -55,6 +55,11 @@ class CompletePurchaseResponse extends AbstractResponse
         return $this->data['LMI_PAYMENT_AMOUNT'];
     }
 
+    public function getCurrency()
+    {
+        return $this->request->getCurrencyByPurse($this->data['LMI_PAYEE_PURSE']);
+    }
+
     public function getTestMode()
     {
         return (bool) $this->getMode();
