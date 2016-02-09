@@ -90,6 +90,7 @@ class CompletePurchaseResponseTest extends TestCase
         $this->assertSame('892', $response->getTransactionReference());
         $this->assertSame('Z123428476799', $response->getMerchantPurse());
         $this->assertSame('14.65', $response->getAmount());
+        $this->assertSame('USD', $response->getCurrency());
         $this->assertTrue($response->getTestMode());
         $this->assertSame('1', $response->getMode());
         $this->assertSame('0B12E75431284D6FCC05D8AF02B90AC28A0788FB95C9FF6B655344022F0746E5', $response->getHash());
@@ -122,6 +123,7 @@ class CompletePurchaseResponseTest extends TestCase
         $this->assertSame('892', $response->getTransactionReference());
         $this->assertSame('Z123428476799', $response->getMerchantPurse());
         $this->assertSame('14.65', $response->getAmount());
+        $this->assertSame('USD', $response->getCurrency());
         $this->assertTrue($response->getTestMode());
         $this->assertSame('1', $response->getMode());
         $this->assertSame('sha256', $response->getHashType());
@@ -155,6 +157,7 @@ class CompletePurchaseResponseTest extends TestCase
         $this->assertSame('892', $response->getTransactionReference());
         $this->assertSame('Z123428476799', $response->getMerchantPurse());
         $this->assertSame('14.65', $response->getAmount());
+        $this->assertSame('USD', $response->getCurrency());
         $this->assertTrue($response->getTestMode());
         $this->assertSame('1', $response->getMode());
         $this->assertSame('md5', $response->getHashType());
