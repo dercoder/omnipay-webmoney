@@ -2,9 +2,8 @@
 
 **WebMoney driver for the Omnipay PHP payment processing library**
 
-[![Build Status](https://travis-ci.org/dercoder/omnipay-webmoney.png?branch=master)](https://travis-ci.org/dercoder/omnipay-webmoney)
+[![Build Status](https://travis-ci.org/dercoder/omnipay-webmoney.svg?branch=master)](https://travis-ci.org/dercoder/omnipay-webmoney)
 [![Coverage Status](https://coveralls.io/repos/dercoder/omnipay-webmoney/badge.svg?branch=master&service=github)](https://coveralls.io/github/dercoder/omnipay-webmoney?branch=master)
-[![Dependency Status](https://www.versioneye.com/user/projects/561d2ed236d0ab0021000009/badge.png)](https://www.versioneye.com/user/projects/561d2ed236d0ab0021000009)
 
 [![Latest Stable Version](https://poser.pugx.org/dercoder/omnipay-webmoney/v/stable.png)](https://packagist.org/packages/dercoder/omnipay-webmoney)
 [![Total Downloads](https://poser.pugx.org/dercoder/omnipay-webmoney/downloads.png)](https://packagist.org/packages/dercoder/omnipay-webmoney)

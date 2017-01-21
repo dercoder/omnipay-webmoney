@@ -155,11 +155,11 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
      * Redirect method conversion table.
      */
     private static $methodsTable = array(
-        '1'     => '1',
-        '2'     => '2',
-        'GET'   => '0',
-        'POST'  => '1',
-        'LINK'  => '2',
+        '1'    => '1',
+        '2'    => '2',
+        'GET'  => '0',
+        'POST' => '1',
+        'LINK' => '2',
     );
 
     /**
@@ -171,7 +171,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
      */
     public function formatMethod($method)
     {
-        $method = strtoupper((string)$method);
+        $method = strtoupper((string) $method);
         return isset(self::$methodsTable[$method]) ? self::$methodsTable[$method] : '0';
     }
 
@@ -252,7 +252,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
             case 'X':
                 return 'BTC';
             default:
-                return;
+                return null;
         }
     }
 }

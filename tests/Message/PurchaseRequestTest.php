@@ -53,6 +53,7 @@ class PurchaseRequestTest extends TestCase
         $this->assertSame('1', $data['LMI_SUCCESS_METHOD']);
         $this->assertSame('https://www.foodstore.com/failure', $data['LMI_FAIL_URL']);
         $this->assertSame('2', $data['LMI_FAIL_METHOD']);
+        $this->assertSame('0', $data['LMI_HOLD']);
     }
 
     public function testSendData()

@@ -85,7 +85,7 @@ class CompletePurchaseResponse extends AbstractResponse
             case 132:
                 return 'sign';
             default:
-                return;
+                return null;
         }
     }
 
