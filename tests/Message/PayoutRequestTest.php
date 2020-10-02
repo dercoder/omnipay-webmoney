@@ -80,17 +80,4 @@ class PayoutRequestTest extends TestCase
         $this->assertSame('12345678', (string) $request->trans->wminvid);
         $this->assertSame('0', (string) $request->trans->onlyauth);
     }
-
-    public function testSendData()
-    {
-        $data = $this->request->getData();
-        $caught = false;
-        try {
-            $response = $this->request->sendData($data);
-        } catch (CurlException $exception) {
-            // We don't have a valid client SSL cert to interact with
-            $this->assertStringStartsWith('[curl] 56: OpenSSL SSL_read: error:14094418:SSL routines:ssl3_read_bytes:tlsv1 alert unknown ca', $exception->getMessage());
-            $caught = true;
-        }
-    }
 }
