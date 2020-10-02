@@ -1,6 +1,7 @@
 <?php
 namespace Omnipay\WebMoney\Message;
 
+use Exception;
 use Omnipay\Tests\TestCase;
 
 class PurchaseRequestTest extends TestCase
@@ -34,8 +35,8 @@ class PurchaseRequestTest extends TestCase
 
         try {
             $this->request->getData();
-        } catch (\Exception $e) {
-            $this->assertEquals('Omnipay\Common\Exception\InvalidRequestException', get_class($e));
+        } catch (Exception $e) {
+            $this->assertInstanceOf(\Omnipay\Common\Exception\InvalidRequestException::class, $e);
         }
     }
 
@@ -60,7 +61,7 @@ class PurchaseRequestTest extends TestCase
     {
         $data = $this->request->getData();
         $response = $this->request->sendData($data);
-        $this->assertSame('Omnipay\WebMoney\Message\PurchaseResponse', get_class($response));
+        $this->assertInstanceOf(\Omnipay\WebMoney\Message\PurchaseResponse::class, $response);
     }
 
     public function testGetCurrencyByPurse()

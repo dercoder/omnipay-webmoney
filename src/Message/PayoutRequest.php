@@ -2,6 +2,7 @@
 
 namespace Omnipay\WebMoney\Message;
 
+use Guzzle\Http\Client;
 use Omnipay\Common\Exception\InvalidRequestException;
 
 /**
@@ -275,20 +276,29 @@ class PayoutRequest extends AbstractRequest
         return $document->saveXML();
     }
 
+    /**
+     * @return Client
+     */
+    private function getHttpClient()
+    {
+        return new Client($this->endpoint);
+    }
+
     public function sendData($data)
     {
-        $this->httpClient->setConfig(array(
-            'curl.options' => array(
+        $client = $this->getHttpClient();
+        $client->setConfig([
+            Client::CURL_OPTIONS => [
                 CURLOPT_CAINFO => $this->getCertificatePath('WMUsedRootCAs.crt'),
                 CURLOPT_SSLCERT => $this->getSslFile(),
                 CURLOPT_SSLKEY => $this->getSslKey(),
                 CURLOPT_SSLVERSION => 1,
                 CURLOPT_SSL_VERIFYHOST => 2,
                 CURLOPT_SSL_VERIFYPEER => 1,
-            ),
-        ));
+            ],
+        ]);
 
-        $httpResponse = $this->httpClient->post($this->endpoint, null, $data)->send();
+        $httpResponse = $client->post($this->endpoint, [], $data)->send();
 
         return $this->createResponse($httpResponse->xml());
     }
@@ -300,10 +310,6 @@ class PayoutRequest extends AbstractRequest
 
     protected function getCertificatePath($fileName)
     {
-        $class = new \ReflectionObject($this);
-        $directory = dirname($class->getFileName());
-        $file = realpath($directory.'/../Certificate/'.$fileName);
-
-        return $file;
+        return __DIR__ . '/../Certificate/' . $fileName;
     }
 }

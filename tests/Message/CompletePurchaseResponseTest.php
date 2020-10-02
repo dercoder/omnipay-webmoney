@@ -2,6 +2,7 @@
 namespace Omnipay\WebMoney\Message;
 
 use Omnipay\Tests\TestCase;
+use Omnipay\Common\Exception\InvalidResponseException;
 
 class CompletePurchaseResponseTest extends TestCase
 {
@@ -21,7 +22,8 @@ class CompletePurchaseResponseTest extends TestCase
 
     public function testSignHashException()
     {
-        $this->setExpectedException('Omnipay\Common\Exception\InvalidResponseException', 'Invalid hash');
+        $this->expectException(InvalidResponseException::class);
+        $this->expectExceptionMessage('Invalid hash');
         new CompletePurchaseResponse($this->request, array(
             'LMI_MODE' => '1',
             'LMI_PAYMENT_AMOUNT' => '14.65',
@@ -43,7 +45,8 @@ class CompletePurchaseResponseTest extends TestCase
 
     public function testInvalidTestModeException()
     {
-        $this->setExpectedException('Omnipay\Common\Exception\InvalidResponseException', 'Invalid test mode');
+        $this->expectException(InvalidResponseException::class);
+        $this->expectExceptionMessage('Invalid test mode');
         new CompletePurchaseResponse($this->request, array(
             'LMI_MODE' => '0',
             'LMI_PAYMENT_AMOUNT' => '14.65',
@@ -166,7 +169,8 @@ class CompletePurchaseResponseTest extends TestCase
 
     public function testInvalidHashTypeException()
     {
-        $this->setExpectedException('Omnipay\Common\Exception\InvalidResponseException', 'Control sign forming method "SIGN" is not supported');
+        $this->expectException(InvalidResponseException::class);
+        $this->expectExceptionMessage('Control sign forming method "SIGN" is not supported');
         new CompletePurchaseResponse($this->request, array(
             'LMI_MODE' => '1',
             'LMI_PAYMENT_AMOUNT' => '14.65',
@@ -188,7 +192,8 @@ class CompletePurchaseResponseTest extends TestCase
 
     public function testInvalidSignatureTypeException()
     {
-        $this->setExpectedException('Omnipay\Common\Exception\InvalidResponseException', 'Invalid signature type');
+        $this->expectException(InvalidResponseException::class);
+        $this->expectExceptionMessage('Invalid signature type');
         new CompletePurchaseResponse($this->request, array(
             'LMI_MODE' => '1',
             'LMI_PAYMENT_AMOUNT' => '14.65',
