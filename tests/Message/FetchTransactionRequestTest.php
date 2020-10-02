@@ -11,11 +11,11 @@ class FetchTransactionRequestTest extends TestCase
     {
         parent::setUp();
 
-        $mockPlugin = new \Guzzle\Plugin\Mock\MockPlugin();
-        $mockPlugin->addResponse($this->getMockHttpResponse('FetchTransactionSuccess.txt'));
+        $this->getMockClient()->addResponse(
+            $this->getMockHttpResponse('FetchTransactionSuccess.txt')
+        );
 
         $httpClient = $this->getHttpClient();
-        $httpClient->addSubscriber($mockPlugin);
 
         $this->request = new FetchTransactionRequest($httpClient, $this->getHttpRequest());
         $this->request->initialize(array(
@@ -42,6 +42,6 @@ class FetchTransactionRequestTest extends TestCase
     {
         $data = $this->request->getData();
         $response = $this->request->sendData($data);
-        $this->assertSame('Omnipay\WebMoney\Message\FetchTransactionResponse', get_class($response));
+        $this->assertInstanceOf(\Omnipay\WebMoney\Message\FetchTransactionResponse::class, $response);
     }
 }

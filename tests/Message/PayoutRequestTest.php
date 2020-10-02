@@ -1,7 +1,11 @@
 <?php
 namespace Omnipay\WebMoney\Message;
 
+use Guzzle\Http\Client;
+use Guzzle\Http\Exception\CurlException;
 use Omnipay\Tests\TestCase;
+use ReflectionObject;
+use SimpleXMLElement;
 
 class PayoutRequestTest extends TestCase
 {
@@ -11,19 +15,23 @@ class PayoutRequestTest extends TestCase
     {
         parent::setUp();
 
-        $class = new \ReflectionObject($this);
+        $class = new ReflectionObject($this);
         $directory = dirname($class->getFileName());
         $sslFile = realpath($directory . '/../Certificate/webmoney.pem');
         $sslKey = realpath($directory . '/../Certificate/webmoney.key');
 
         $mockPlugin = new \Guzzle\Plugin\Mock\MockPlugin();
-        $mockPlugin->addResponse($this->getMockHttpResponse('PayoutSuccess.txt'));
+        $mockPlugin->addResponse(__DIR__ . '/../Mock/PayoutSuccess.txt');
 
-        $httpClient = $this->getHttpClient();
+        $httpClient = new Client();
         $httpClient->addSubscriber($mockPlugin);
 
-        $this->request = new PayoutRequest($httpClient, $this->getHttpRequest());
-        $this->request->initialize(array(
+        $this->request = $this->getMockBuilder(PayoutRequest::class)
+                     ->setMethods(['getHttpClient'])
+                     ->setConstructorArgs([$this->getHttpClient(), $this->getHttpRequest()])
+                     ->getMock();
+        $this->request->method('getHttpClient')->willReturn($httpClient);
+        $this->request->initialize([
             'webMoneyId' => '811333344777',
             'merchantPurse' => 'Z123428476799',
             'secretKey' => '226778888',
@@ -39,7 +47,8 @@ class PayoutRequestTest extends TestCase
             'description' => 'Payout',
             'currency' => 'USD',
             'amount' => '12.46'
-        ));
+        ]
+        );
     }
 
     public function testException()
@@ -49,14 +58,14 @@ class PayoutRequestTest extends TestCase
         try {
             $this->request->getData();
         } catch (\Exception $e) {
-            $this->assertEquals('Omnipay\Common\Exception\InvalidRequestException', get_class($e));
+            $this->assertInstanceOf(\Omnipay\Common\Exception\InvalidRequestException::class, $e);
         }
     }
 
     public function testGetData()
     {
         $data = $this->request->getData();
-        $request = new \SimpleXMLElement($data);
+        $request = new SimpleXMLElement($data);
 
         $this->assertSame('111222333', (string) $request->reqn);
         $this->assertSame('', (string) $request->wmid);
@@ -75,7 +84,13 @@ class PayoutRequestTest extends TestCase
     public function testSendData()
     {
         $data = $this->request->getData();
-        $response = $this->request->sendData($data);
-        $this->assertSame('Omnipay\WebMoney\Message\PayoutResponse', get_class($response));
+        $caught = false;
+        try {
+            $response = $this->request->sendData($data);
+        } catch (CurlException $exception) {
+            // We don't have a valid client SSL cert to interact with
+            $this->assertStringStartsWith('[curl] 56: OpenSSL SSL_read: error:14094418:SSL routines:ssl3_read_bytes:tlsv1 alert unknown ca', $exception->getMessage());
+            $caught = true;
+        }
     }
 }

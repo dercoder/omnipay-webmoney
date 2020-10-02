@@ -24,7 +24,8 @@ class FetchTransactionResponseTest extends TestCase
     public function testFailure()
     {
         $httpResponse = $this->getMockHttpResponse('FetchTransactionFailure.txt');
-        $response = new FetchTransactionResponse($this->request, $httpResponse->xml());
+        $xml = simplexml_load_string($httpResponse->getBody()->getContents());
+        $response = new FetchTransactionResponse($this->request, $xml);
 
         $this->assertFalse($response->isSuccessful());
         $this->assertSame(7, $response->getCode());
@@ -38,7 +39,8 @@ class FetchTransactionResponseTest extends TestCase
     public function testSuccess()
     {
         $httpResponse = $this->getMockHttpResponse('FetchTransactionSuccess.txt');
-        $response = new FetchTransactionResponse($this->request, $httpResponse->xml());
+        $xml = simplexml_load_string($httpResponse->getBody()->getContents());
+        $response = new FetchTransactionResponse($this->request, $xml);
 
         $this->assertTrue($response->isSuccessful());
         $this->assertSame(0, $response->getCode());

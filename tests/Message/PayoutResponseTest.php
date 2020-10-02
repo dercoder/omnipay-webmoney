@@ -39,7 +39,8 @@ class PayoutResponseTest extends TestCase
     public function testFailure()
     {
         $httpResponse = $this->getMockHttpResponse('PayoutFailure.txt');
-        $response = new PayoutResponse($this->request, $httpResponse->xml());
+        $xml = simplexml_load_string($httpResponse->getBody()->getContents());
+        $response = new PayoutResponse($this->request, $xml);
 
         $this->assertFalse($response->isSuccessful());
         $this->assertSame(17, $response->getCode());
@@ -53,7 +54,8 @@ class PayoutResponseTest extends TestCase
     public function testSuccess()
     {
         $httpResponse = $this->getMockHttpResponse('PayoutSuccess.txt');
-        $response = new PayoutResponse($this->request, $httpResponse->xml());
+        $xml = simplexml_load_string($httpResponse->getBody()->getContents());
+        $response = new PayoutResponse($this->request, $xml);
 
         $this->assertTrue($response->isSuccessful());
         $this->assertSame(0, $response->getCode());

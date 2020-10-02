@@ -55,9 +55,10 @@ class FetchTransactionRequest extends AbstractRequest
 
     public function sendData($data)
     {
-        $httpResponse = $this->httpClient->post($this->endpoint, null, $data)->send();
+        $httpResponse = $this->httpClient->request('POST', $this->endpoint, [], $data);
+        $xml = simplexml_load_string($httpResponse->getBody()->getContents());
 
-        return $this->createResponse($httpResponse->xml());
+        return $this->createResponse($xml);
     }
 
     protected function createResponse($data)

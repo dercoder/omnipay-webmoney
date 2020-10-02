@@ -63,6 +63,6 @@ class CompletePurchaseRequestTest extends TestCase
     {
         $data = $this->request->getData();
         $response = $this->request->sendData($data);
-        $this->assertSame('Omnipay\WebMoney\Message\CompletePurchaseResponse', get_class($response));
+        $this->assertInstanceOf(CompletePurchaseResponse::class, $response);
     }
 }
