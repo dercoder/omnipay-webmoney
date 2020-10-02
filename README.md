@@ -11,7 +11,7 @@
 [![License](https://poser.pugx.org/dercoder/omnipay-webmoney/license.png)](https://packagist.org/packages/dercoder/omnipay-webmoney)
 
 [Omnipay](https://github.com/omnipay/omnipay) is a framework agnostic, multi-gateway payment
-processing library for PHP 5.3+. This package implements [WebMoney](https://www.webmoney.az) support for Omnipay.
+processing library for PHP 5.6+. This package implements [WebMoney](https://www.webmoney.az) support for Omnipay.
 
 ## Installation
 
@@ -21,7 +21,7 @@ to your `composer.json` file:
 ```json
 {
     "require": {
-        "dercoder/omnipay-webmoney": "~1.0"
+        "dercoder/omnipay-webmoney": "~3.0"
     }
 }
 ```
