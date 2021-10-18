@@ -180,6 +180,26 @@ class Gateway extends AbstractGateway
         return $this->setParameter('sslKey', $value);
     }
 
+    public function getField_1()
+    {
+        return $this->getParameter('field_1');
+    }
+
+    public function setField_1($value)
+    {
+        return $this->setParameter('field_1', $value);
+    }
+
+    public function getField_2()
+    {
+        return $this->getParameter('field_2');
+    }
+
+    public function setField_2($value)
+    {
+        return $this->setParameter('field_2', $value);
+    }
+
     /**
      * @param array $parameters
      *

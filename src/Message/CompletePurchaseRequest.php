@@ -51,6 +51,8 @@ class CompletePurchaseRequest extends AbstractRequest
             'LMI_PAYER_IP' => $this->httpRequest->request->get('LMI_PAYER_IP'),
             'LMI_LANG' => $this->httpRequest->request->get('LMI_LANG'),
             'LMI_DBLCHK' => $this->httpRequest->request->get('LMI_DBLCHK'),
+            'FIELD_1' => $this->httpRequest->request->get('FIELD_1'),
+            'FIELD_2' => $this->httpRequest->request->get('FIELD_2'),
         );
     }
 

@@ -68,7 +68,9 @@ class PurchaseRequest extends AbstractRequest
             'LMI_SUCCESS_METHOD'      => $this->getReturnMethod(),
             'LMI_FAIL_URL'            => $this->getCancelUrl(),
             'LMI_FAIL_METHOD'         => $this->getCancelMethod(),
-            'LMI_HOLD'                => $this->getHold()
+            'LMI_HOLD'                => $this->getHold(),
+            'FIELD_1'                 => $this->getField_1(),
+            'FIELD_2'                 => $this->getField_2()
         );
     }
 
