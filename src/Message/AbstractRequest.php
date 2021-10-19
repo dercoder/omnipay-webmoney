@@ -89,14 +89,14 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         return $this->getParameter('secretKey');
     }
 
-    public function getField_1()
+    public function getField1()
     {
-        return $this->getParameter('field_1');
+        return $this->getParameter('field1');
     }
 
-    public function getField_2()
+    public function getField2()
     {
-        return $this->getParameter('field_2');
+        return $this->getParameter('field2');
     }
 
     /**
@@ -117,14 +117,14 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         return $this->setParameter('secretKey', $value);
     }
 
-    public function setField_1($value)
+    public function setField1($value)
     {
-        return $this->setParameter('field_1', $value);
+        return $this->setParameter('field1', $value);
     }
 
-    public function setField_2($value)
+    public function setField2($value)
     {
-        return $this->setParameter('field_2', $value);
+        return $this->setParameter('field2', $value);
     }
 
     /**

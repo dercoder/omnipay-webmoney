@@ -22,6 +22,8 @@ class PurchaseResponseTest extends TestCase
             'transactionId' => '1234567890',
             'amount'        => '14.65',
             'currency'      => 'USD',
+            'field1'        => 'test123',
+            'field2'        => 'f34867fc226329578f4',
             'testMode'      => true,
             'hold'          => 2
         ));
@@ -48,6 +50,8 @@ class PurchaseResponseTest extends TestCase
             'LMI_SUCCESS_METHOD'      => '0',
             'LMI_FAIL_URL'            => 'https://www.foodstore.com/failure',
             'LMI_FAIL_METHOD'         => '0',
+            'FIELD_1'                 => '2',
+            'FIELD_2'                 => '2',
             'LMI_HOLD'                => '2'
         ), $response->getRedirectData());
     }

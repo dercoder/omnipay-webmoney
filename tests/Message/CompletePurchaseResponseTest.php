@@ -16,6 +16,8 @@ class CompletePurchaseResponseTest extends TestCase
         $this->request->initialize(array(
             'merchantPurse' => 'Z123428476799',
             'secretKey' => '226778888',
+            'field1' => 'test123',
+            'field2' => 'f34867fc226329578f4',
             'testMode' => true
         ));
     }
@@ -39,7 +41,9 @@ class CompletePurchaseResponseTest extends TestCase
             'LMI_HASH' => '0B12E75431284D6FCC05D8AF02B90AC28A0788FB95C9FF6B655344022F0746E1',
             'LMI_PAYMENT_DESC' => 'Test',
             'LMI_LANG' => 'en-US',
-            'LMI_DBLCHK' => 'SMS'
+            'LMI_DBLCHK' => 'SMS',
+            'FIELD_1'=> 'test123',
+            'FIELD_2'=> 'f34867fc226329578f4'
         ));
     }
 
@@ -62,7 +66,9 @@ class CompletePurchaseResponseTest extends TestCase
             'LMI_HASH' => '4F7D9FD1177DFDAE182F0E470296080DC47A843A32826147555F5C8959E7F6DD',
             'LMI_PAYMENT_DESC' => 'Test',
             'LMI_LANG' => 'en-US',
-            'LMI_DBLCHK' => 'SMS'
+            'LMI_DBLCHK' => 'SMS',
+            'FIELD_1'=> 'test123',
+            'FIELD_2'=> 'f34867fc226329578f4'
         ));
     }
 
@@ -83,7 +89,9 @@ class CompletePurchaseResponseTest extends TestCase
             'LMI_HASH' => '0B12E75431284D6FCC05D8AF02B90AC28A0788FB95C9FF6B655344022F0746E5',
             'LMI_PAYMENT_DESC' => 'Test',
             'LMI_LANG' => 'en-US',
-            'LMI_DBLCHK' => 'SMS'
+            'LMI_DBLCHK' => 'SMS',
+            'FIELD_1'=> 'test123',
+            'FIELD_2'=> 'f34867fc226329578f4'
         ));
 
         $this->assertTrue($response->isSuccessful());
@@ -116,7 +124,9 @@ class CompletePurchaseResponseTest extends TestCase
             'LMI_HASH' => '0B12E75431284D6FCC05D8AF02B90AC28A0788FB95C9FF6B655344022F0746E5',
             'LMI_PAYMENT_DESC' => 'Test',
             'LMI_LANG' => 'en-US',
-            'LMI_DBLCHK' => 'SMS'
+            'LMI_DBLCHK' => 'SMS',
+            'FIELD_1'=> 'test123',
+            'FIELD_2'=> 'f34867fc226329578f4'
         ));
 
         $this->assertTrue($response->isSuccessful());
@@ -150,7 +160,9 @@ class CompletePurchaseResponseTest extends TestCase
             'LMI_HASH' => '1D3FFAFA982B134479C4AD1AE2CABB5C',
             'LMI_PAYMENT_DESC' => 'Test',
             'LMI_LANG' => 'en-US',
-            'LMI_DBLCHK' => 'SMS'
+            'LMI_DBLCHK' => 'SMS',
+            'FIELD_1'=> 'test123',
+            'FIELD_2'=> 'f34867fc226329578f4'
         ));
 
         $this->assertTrue($response->isSuccessful());
@@ -186,7 +198,9 @@ class CompletePurchaseResponseTest extends TestCase
             'LMI_HASH' => '2E2A8871CBB577DE4AB3E47EBFA100EB8AD9C7AF6FB5580169B8273409863941BDA16647D2D2619D8FFF946D319FE35D758844214B02F46CBA7AE35AFE3F86940069',
             'LMI_PAYMENT_DESC' => 'Test',
             'LMI_LANG' => 'en-US',
-            'LMI_DBLCHK' => 'SMS'
+            'LMI_DBLCHK' => 'SMS',
+            'FIELD_1'=> 'test123',
+            'FIELD_2'=> 'f34867fc226329578f4'
         ));
     }
 
@@ -209,7 +223,9 @@ class CompletePurchaseResponseTest extends TestCase
             'LMI_HASH' => 'ABD',
             'LMI_PAYMENT_DESC' => 'Test',
             'LMI_LANG' => 'en-US',
-            'LMI_DBLCHK' => 'SMS'
+            'LMI_DBLCHK' => 'SMS',
+            'FIELD_1'=> 'test123',
+            'FIELD_2'=> 'f34867fc226329578f4'
         ));
     }
 }

@@ -27,13 +27,17 @@ class CompletePurchaseRequestTest extends TestCase
             'LMI_HASH' => '0B12E75431284D6FCC05D8AF02B90AC28A0788FB95C9FF6B655344022F0746E5',
             'LMI_PAYMENT_DESC' => 'Test',
             'LMI_LANG' => 'en-US',
-            'LMI_DBLCHK' => 'SMS'
+            'LMI_DBLCHK' => 'SMS',
+            'FIELD_1'=> 'test123',
+            'FIELD_2'=> 'f34867fc226329578f4'
         ));
 
         $this->request = new CompletePurchaseRequest($this->getHttpClient(), $httpRequest);
         $this->request->initialize(array(
             'merchantPurse' => 'Z123428476799',
             'secretKey' => '226778888',
+            'field1' => 'test123',
+            'field2' => 'f34867fc226329578f4',
             'testMode' => true
         ));
     }
@@ -57,6 +61,8 @@ class CompletePurchaseRequestTest extends TestCase
         $this->assertSame('Test', $data['LMI_PAYMENT_DESC']);
         $this->assertSame('en-US', $data['LMI_LANG']);
         $this->assertSame('SMS', $data['LMI_DBLCHK']);
+        $this->assertSame('test123', $data['FIELD_1']);
+        $this->assertSame('f34867fc226329578f4', $data['FIELD_2']);
     }
 
     public function testSendData()

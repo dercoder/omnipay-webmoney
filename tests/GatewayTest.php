@@ -22,6 +22,8 @@ class GatewayTest extends GatewayTestCase
         $this->gateway->setWebMoneyId('811333344777');
         $this->gateway->setMerchantPurse('Z123428476799');
         $this->gateway->setSecretKey('226778888');
+        $this->gateway->setField1('test123');
+        $this->gateway->setField2('f34867fc226329578f4');
         $this->gateway->setSsLFile($this->sslFile);
         $this->gateway->setSslKey($this->sslKey);
         $this->gateway->setTestMode(true);
@@ -32,6 +34,8 @@ class GatewayTest extends GatewayTestCase
         $this->assertSame('811333344777', $this->gateway->getWebMoneyId());
         $this->assertSame('Z123428476799', $this->gateway->getMerchantPurse());
         $this->assertSame('226778888', $this->gateway->getSecretKey());
+        $this->assertSame('test123', $this->gateway->getField1());
+        $this->assertSame('f34867fc226329578f4', $this->gateway->getField2());
         $this->assertSame($this->sslFile, $this->gateway->getSslFile());
         $this->assertSame($this->sslKey, $this->gateway->getSslKey());
     }

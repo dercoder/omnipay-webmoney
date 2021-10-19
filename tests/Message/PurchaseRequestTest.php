@@ -25,6 +25,8 @@ class PurchaseRequestTest extends TestCase
             'transactionId' => '1234567890',
             'amount' => '14.65',
             'currency' => 'USD',
+            'field1' => 'test123',
+            'field2' => 'f34867fc226329578f4',
             'testMode' => true
         ));
     }
@@ -55,6 +57,8 @@ class PurchaseRequestTest extends TestCase
         $this->assertSame('https://www.foodstore.com/failure', $data['LMI_FAIL_URL']);
         $this->assertSame('2', $data['LMI_FAIL_METHOD']);
         $this->assertSame('0', $data['LMI_HOLD']);
+        $this->assertSame('test123', $data['FIELD_1']);
+        $this->assertSame('f34867fc226329578f4', $data['FIELD_2']);
     }
 
     public function testSendData()
