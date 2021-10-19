@@ -1,4 +1,5 @@
 <?php
+
 namespace Omnipay\WebMoney\Message;
 
 use Omnipay\Tests\TestCase;
@@ -18,22 +19,22 @@ class PayoutResponseTest extends TestCase
         $sslKey = realpath($directory . '/../Certificate/webmoney.key');
 
         $this->request = new PayoutRequest($this->getHttpClient(), $this->getHttpRequest());
-        $this->request->initialize(array(
-            'webMoneyId' => '811333344777',
-            'merchantPurse' => 'Z123428476799',
-            'secretKey' => '226778888',
-            'sslFile' => $sslFile,
-            'sslKey' => $sslKey,
-            'transactionId' => '1444111666',
-            'requestNumber' => '111222333',
-            'customerPurse' => 'Z123428476700',
+        $this->request->initialize([
+            'webMoneyId'       => '811333344777',
+            'merchantPurse'    => 'Z123428476799',
+            'secretKey'        => '226778888',
+            'sslFile'          => $sslFile,
+            'sslKey'           => $sslKey,
+            'transactionId'    => '1444111666',
+            'requestNumber'    => '111222333',
+            'customerPurse'    => 'Z123428476700',
             'protectionPeriod' => '60',
-            'protectionCode' => 'xyZ123',
-            'invoiceId' => '12345678',
-            'onlyAuth' => false,
-            'description' => 'Payout',
-            'amount' => '12.46'
-        ));
+            'protectionCode'   => 'xyZ123',
+            'invoiceId'        => '12345678',
+            'onlyAuth'         => false,
+            'description'      => 'Payout',
+            'amount'           => '12.46',
+        ]);
     }
 
     public function testFailure()

@@ -1,4 +1,5 @@
 <?php
+
 namespace Omnipay\WebMoney\Message;
 
 use Omnipay\Tests\TestCase;
@@ -13,12 +14,12 @@ class FetchTransactionResponseTest extends TestCase
         parent::setUp();
 
         $this->request = new FetchTransactionRequest($this->getHttpClient(), $this->getHttpRequest());
-        $this->request->initialize(array(
+        $this->request->initialize([
             'webMoneyId' => '811333344777',
             'merchantPurse' => 'Z123428476799',
             'secretKey' => '226778888',
-            'transactionId' => '1444212666'
-        ));
+            'transactionId' => '1444212666',
+        ]);
     }
 
     public function testFailure()
@@ -29,7 +30,10 @@ class FetchTransactionResponseTest extends TestCase
 
         $this->assertFalse($response->isSuccessful());
         $this->assertSame(7, $response->getCode());
-        $this->assertSame('Payment with lmi_payment_no number not found for this merchant purse:7 step=50', $response->getMessage());
+        $this->assertSame(
+            'Payment with lmi_payment_no number not found for this merchant purse:7 step=50',
+            $response->getMessage()
+        );
         $this->assertNull($response->getTransactionReference());
         $this->assertNull($response->getDescription());
         $this->assertNull($response->getAmount());

@@ -70,9 +70,9 @@ class FetchTransactionRequest extends AbstractRequest
     {
         return hash(
             $algorithm,
-            $this->getWebMoneyId().
-            $this->getMerchantPurse().
-            $this->getTransactionId().
+            $this->getWebMoneyId() .
+            $this->getMerchantPurse() .
+            $this->getTransactionId() .
             $this->getSecretKey()
         );
     }

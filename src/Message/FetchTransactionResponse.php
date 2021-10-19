@@ -28,33 +28,33 @@ class FetchTransactionResponse extends AbstractResponse
 
     public function getCode()
     {
-        return (int) $this->data->retval;
+        return (int)$this->data->retval;
     }
 
     public function getMessage()
     {
-        $message = (string) $this->data->retdesc;
+        $message = (string)$this->data->retdesc;
 
         return $message ? $message : null;
     }
 
     public function getTransactionReference()
     {
-        return $this->data->operation ? (string) $this->data->operation->attributes()->wmtransid : null;
+        return $this->data->operation ? (string)$this->data->operation->attributes()->wmtransid : null;
     }
 
     public function getDescription()
     {
-        return $this->data->operation ? (string) $this->data->operation->purpose : null;
+        return $this->data->operation ? (string)$this->data->operation->purpose : null;
     }
 
     public function getAmount()
     {
-        return $this->data->operation ? (string) $this->data->operation->amount : null;
+        return $this->data->operation ? (string)$this->data->operation->amount : null;
     }
 
     public function getClientIp()
     {
-        return $this->data->operation ? (string) $this->data->operation->IPAddress : null;
+        return $this->data->operation ? (string)$this->data->operation->IPAddress : null;
     }
 }

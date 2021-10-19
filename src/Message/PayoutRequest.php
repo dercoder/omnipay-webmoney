@@ -58,7 +58,7 @@ class PayoutRequest extends AbstractRequest
     {
         $requestNumber = $this->getParameter('requestNumber');
 
-        return $requestNumber ? $requestNumber : (string) time();
+        return $requestNumber ? $requestNumber : (string)time();
     }
 
     /**
@@ -87,7 +87,7 @@ class PayoutRequest extends AbstractRequest
      */
     public function getProtectionPeriod()
     {
-        return (int) $this->getParameter('protectionPeriod');
+        return (int)$this->getParameter('protectionPeriod');
     }
 
     /**
@@ -143,7 +143,7 @@ class PayoutRequest extends AbstractRequest
      */
     public function getInvoiceId()
     {
-        return (int) $this->getParameter('invoiceId');
+        return (int)$this->getParameter('invoiceId');
     }
 
     /**
@@ -175,7 +175,7 @@ class PayoutRequest extends AbstractRequest
      */
     public function getOnlyAuth()
     {
-        return (int) $this->getParameter('onlyAuth');
+        return (int)$this->getParameter('onlyAuth');
     }
 
     /**
@@ -289,10 +289,10 @@ class PayoutRequest extends AbstractRequest
         $client = $this->getHttpClient();
         $client->setConfig([
             Client::CURL_OPTIONS => [
-                CURLOPT_CAINFO => $this->getCertificatePath('WMUsedRootCAs.crt'),
-                CURLOPT_SSLCERT => $this->getSslFile(),
-                CURLOPT_SSLKEY => $this->getSslKey(),
-                CURLOPT_SSLVERSION => 1,
+                CURLOPT_CAINFO         => $this->getCertificatePath('WMUsedRootCAs.crt'),
+                CURLOPT_SSLCERT        => $this->getSslFile(),
+                CURLOPT_SSLKEY         => $this->getSslKey(),
+                CURLOPT_SSLVERSION     => 1,
                 CURLOPT_SSL_VERIFYHOST => 2,
                 CURLOPT_SSL_VERIFYPEER => 1,
             ],

@@ -154,13 +154,13 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     /**
      * Redirect method conversion table.
      */
-    private static $methodsTable = array(
+    private static $methodsTable = [
         '1'    => '1',
         '2'    => '2',
         'GET'  => '0',
         'POST' => '1',
         'LINK' => '2',
-    );
+    ];
 
     /**
      * Converts redirect method to WebMoney code: 0, 1 or 2.
@@ -171,7 +171,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
      */
     public function formatMethod($method)
     {
-        $method = strtoupper((string) $method);
+        $method = strtoupper((string)$method);
         return isset(self::$methodsTable[$method]) ? self::$methodsTable[$method] : '0';
     }
 

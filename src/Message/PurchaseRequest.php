@@ -15,12 +15,12 @@ use Omnipay\Common\Exception\InvalidRequestException;
 class PurchaseRequest extends AbstractRequest
 {
     /**
-     * @return int
+     * @return string
      */
     public function getHold()
     {
         if ($hold = $this->getParameter('hold')) {
-            return (string) $hold;
+            return (string)$hold;
         }
 
         return '0';
@@ -34,6 +34,51 @@ class PurchaseRequest extends AbstractRequest
     public function setHold($value)
     {
         return $this->setParameter('hold', $value);
+    }
+
+    /**
+     * @return array
+     */
+    public function getCustomFields()
+    {
+        return $this->getParameter('customFields') ?? [];
+    }
+
+    /**
+     * @param array $fields
+     *
+     * @return $this
+     * @throws \Exception
+     */
+    public function setCustomFields(array $fields)
+    {
+        $customFields = [];
+        foreach ($fields as $field => $value) {
+            if (is_numeric($field)) {
+                $field++;
+                $field = "FIELD_$field";
+            }
+
+            $field = strtoupper($field);
+
+            if (substr($field, 0, 1) === '_') {
+                throw new \Exception('"_" prefix is not allowed for custom fields');
+            }
+
+            if (substr($field, 0, 4) === 'LMI_') {
+                throw new \Exception('"LMI_" prefix is not allowed for custom fields');
+            }
+
+            if (!is_scalar($value)) {
+                throw new \Exception('Value must be a scalar');
+            }
+
+            $customFields[$field] = (string)$value;
+        }
+
+        $this->setParameter('customFields', $customFields);
+
+        return $this;
     }
 
     /**
@@ -57,7 +102,7 @@ class PurchaseRequest extends AbstractRequest
             throw new InvalidRequestException('Invalid currency for this merchant purse');
         }
 
-        return array(
+        $data = [
             'LMI_PAYEE_PURSE'         => $this->getMerchantPurse(),
             'LMI_PAYMENT_AMOUNT'      => $this->getAmount(),
             'LMI_PAYMENT_NO'          => $this->getTransactionId(),
@@ -68,8 +113,16 @@ class PurchaseRequest extends AbstractRequest
             'LMI_SUCCESS_METHOD'      => $this->getReturnMethod(),
             'LMI_FAIL_URL'            => $this->getCancelUrl(),
             'LMI_FAIL_METHOD'         => $this->getCancelMethod(),
-            'LMI_HOLD'                => $this->getHold()
-        );
+            'LMI_HOLD'                => $this->getHold(),
+        ];
+
+        foreach ($this->getCustomFields() as $variable => $value) {
+            if (!isset($data[$variable])) {
+                $data[$variable] = $value;
+            }
+        }
+
+        return $data;
     }
 
     /**

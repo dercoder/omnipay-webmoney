@@ -62,7 +62,7 @@ class CompletePurchaseResponse extends AbstractResponse
 
     public function getTestMode()
     {
-        return (bool) $this->getMode();
+        return (bool)$this->getMode();
     }
 
     public function getMode()
@@ -114,18 +114,20 @@ class CompletePurchaseResponse extends AbstractResponse
             throw new InvalidResponseException('Invalid signature type');
         }
 
-        return strtoupper(hash(
-            $hashType,
-            $this->data['LMI_PAYEE_PURSE'].
-            $this->data['LMI_PAYMENT_AMOUNT'].
-            $this->data['LMI_PAYMENT_NO'].
-            $this->data['LMI_MODE'].
-            $this->data['LMI_SYS_INVS_NO'].
-            $this->data['LMI_SYS_TRANS_NO'].
-            $this->data['LMI_SYS_TRANS_DATE'].
-            $this->request->getSecretkey().
-            $this->data['LMI_PAYER_PURSE'].
-            $this->data['LMI_PAYER_WM']
-        ));
+        return strtoupper(
+            hash(
+                $hashType,
+                $this->data['LMI_PAYEE_PURSE'] .
+                $this->data['LMI_PAYMENT_AMOUNT'] .
+                $this->data['LMI_PAYMENT_NO'] .
+                $this->data['LMI_MODE'] .
+                $this->data['LMI_SYS_INVS_NO'] .
+                $this->data['LMI_SYS_TRANS_NO'] .
+                $this->data['LMI_SYS_TRANS_DATE'] .
+                $this->request->getSecretkey() .
+                $this->data['LMI_PAYER_PURSE'] .
+                $this->data['LMI_PAYER_WM']
+            )
+        );
     }
 }

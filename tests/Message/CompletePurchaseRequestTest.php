@@ -1,4 +1,5 @@
 <?php
+
 namespace Omnipay\WebMoney\Message;
 
 use Omnipay\Tests\TestCase;
@@ -12,30 +13,30 @@ class CompletePurchaseRequestTest extends TestCase
     {
         parent::setUp();
 
-        $httpRequest = new HttpRequest(array(), array (
-            'LMI_MODE' => '1',
-            'LMI_PAYMENT_AMOUNT' => '14.65',
-            'LMI_PAYEE_PURSE' => 'Z123428476799',
-            'LMI_PAYMENT_NO' => '1444212666',
-            'LMI_PAYER_WM' => '404521188333',
-            'LMI_PAYER_PURSE' => 'Z366393600555',
+        $httpRequest = new HttpRequest([], [
+            'LMI_MODE'            => '1',
+            'LMI_PAYMENT_AMOUNT'  => '14.65',
+            'LMI_PAYEE_PURSE'     => 'Z123428476799',
+            'LMI_PAYMENT_NO'      => '1444212666',
+            'LMI_PAYER_WM'        => '404521188333',
+            'LMI_PAYER_PURSE'     => 'Z366393600555',
             'LMI_PAYER_COUNTRYID' => 'AZ',
-            'LMI_PAYER_IP' => '127.0.0.1',
-            'LMI_SYS_INVS_NO' => '897',
-            'LMI_SYS_TRANS_NO' => '892',
-            'LMI_SYS_TRANS_DATE' => '20151007 13:07:36',
-            'LMI_HASH' => '0B12E75431284D6FCC05D8AF02B90AC28A0788FB95C9FF6B655344022F0746E5',
-            'LMI_PAYMENT_DESC' => 'Test',
-            'LMI_LANG' => 'en-US',
-            'LMI_DBLCHK' => 'SMS'
-        ));
+            'LMI_PAYER_IP'        => '127.0.0.1',
+            'LMI_SYS_INVS_NO'     => '897',
+            'LMI_SYS_TRANS_NO'    => '892',
+            'LMI_SYS_TRANS_DATE'  => '20151007 13:07:36',
+            'LMI_HASH'            => '0B12E75431284D6FCC05D8AF02B90AC28A0788FB95C9FF6B655344022F0746E5',
+            'LMI_PAYMENT_DESC'    => 'Test',
+            'LMI_LANG'            => 'en-US',
+            'LMI_DBLCHK'          => 'SMS',
+        ]);
 
         $this->request = new CompletePurchaseRequest($this->getHttpClient(), $httpRequest);
-        $this->request->initialize(array(
+        $this->request->initialize([
             'merchantPurse' => 'Z123428476799',
-            'secretKey' => '226778888',
-            'testMode' => true
-        ));
+            'secretKey'     => '226778888',
+            'testMode'      => true,
+        ]);
     }
 
     public function testGetData()

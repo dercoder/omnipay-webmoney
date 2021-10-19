@@ -1,4 +1,5 @@
 <?php
+
 namespace Omnipay\WebMoney\Message;
 
 use Omnipay\Tests\TestCase;
@@ -12,7 +13,7 @@ class PurchaseResponseTest extends TestCase
         parent::setUp();
 
         $this->request = new PurchaseRequest($this->getHttpClient(), $this->getHttpRequest());
-        $this->request->initialize(array(
+        $this->request->initialize([
             'merchantPurse' => 'Z123428476799',
             'secretKey'     => '226778888',
             'returnUrl'     => 'https://www.foodstore.com/success',
@@ -23,8 +24,8 @@ class PurchaseResponseTest extends TestCase
             'amount'        => '14.65',
             'currency'      => 'USD',
             'testMode'      => true,
-            'hold'          => 2
-        ));
+            'hold'          => 2,
+        ]);
     }
 
     public function testSuccess()
@@ -37,7 +38,7 @@ class PurchaseResponseTest extends TestCase
         $this->assertNull($response->getMessage());
         $this->assertSame('POST', $response->getRedirectMethod());
         $this->assertSame('https://merchant.wmtransfer.com/lmi/payment.asp', $response->getRedirectUrl());
-        $this->assertSame(array(
+        $this->assertSame([
             'LMI_PAYEE_PURSE'         => 'Z123428476799',
             'LMI_PAYMENT_AMOUNT'      => '14.65',
             'LMI_PAYMENT_NO'          => '1234567890',
@@ -48,7 +49,7 @@ class PurchaseResponseTest extends TestCase
             'LMI_SUCCESS_METHOD'      => '0',
             'LMI_FAIL_URL'            => 'https://www.foodstore.com/failure',
             'LMI_FAIL_METHOD'         => '0',
-            'LMI_HOLD'                => '2'
-        ), $response->getRedirectData());
+            'LMI_HOLD'                => '2',
+        ], $response->getRedirectData());
     }
 }

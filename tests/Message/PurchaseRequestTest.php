@@ -1,4 +1,5 @@
 <?php
+
 namespace Omnipay\WebMoney\Message;
 
 use Exception;
@@ -13,20 +14,27 @@ class PurchaseRequestTest extends TestCase
         parent::setUp();
 
         $this->request = new PurchaseRequest($this->getHttpClient(), $this->getHttpRequest());
-        $this->request->initialize(array(
+        $this->request->initialize([
             'merchantPurse' => 'Z123428476799',
-            'secretKey' => '226778888',
-            'returnUrl' => 'https://www.foodstore.com/success',
-            'cancelUrl' => 'https://www.foodstore.com/failure',
-            'notifyUrl' => 'https://www.foodstore.com/notify',
-            'returnMethod' => 'POST',
-            'cancelMethod' => 'link',
-            'description' => 'Test Transaction',
+            'secretKey'     => '226778888',
+            'returnUrl'     => 'https://www.foodstore.com/success',
+            'cancelUrl'     => 'https://www.foodstore.com/failure',
+            'notifyUrl'     => 'https://www.foodstore.com/notify',
+            'returnMethod'  => 'POST',
+            'cancelMethod'  => 'link',
+            'description'   => 'Test Transaction',
             'transactionId' => '1234567890',
-            'amount' => '14.65',
-            'currency' => 'USD',
-            'testMode' => true
-        ));
+            'amount'        => '14.65',
+            'currency'      => 'USD',
+            'testMode'      => true,
+            'customFields'  => [
+                'customerId' => 123,
+                'first_name' => 'John',
+                'last_name'  => 'Doe',
+                'No-Key',
+                '1'          => 'Numeric-Key',
+            ],
+        ]);
     }
 
     public function testException()
@@ -55,6 +63,11 @@ class PurchaseRequestTest extends TestCase
         $this->assertSame('https://www.foodstore.com/failure', $data['LMI_FAIL_URL']);
         $this->assertSame('2', $data['LMI_FAIL_METHOD']);
         $this->assertSame('0', $data['LMI_HOLD']);
+        $this->assertSame('123', $data['CUSTOMERID']);
+        $this->assertSame('John', $data['FIRST_NAME']);
+        $this->assertSame('Doe', $data['LAST_NAME']);
+        $this->assertSame('No-Key', $data['FIELD_1']);
+        $this->assertSame('Numeric-Key', $data['FIELD_2']);
     }
 
     public function testSendData()
@@ -75,5 +88,40 @@ class PurchaseRequestTest extends TestCase
         $this->assertSame('BYR', $this->request->getCurrencyByPurse('B123428476799'));
         $this->assertSame('BTC', $this->request->getCurrencyByPurse('X123428476799'));
         $this->assertNull($this->request->getCurrencyByPurse('A123428476799'));
+    }
+
+    public function testCustomFields()
+    {
+        $this->request->setCustomFields([
+            'field1'  => 'John',
+            'Field_2' => 'Doe',
+        ]);
+
+        $this->assertArrayHasKey('FIELD1', $this->request->getCustomFields());
+        $this->assertArrayHasKey('FIELD_2', $this->request->getCustomFields());
+    }
+
+    public function testInvalidCustomFields1()
+    {
+        $this->expectException('Exception');
+        $this->request->setCustomFields([
+            'lmi_' => 'John',
+        ]);
+    }
+
+    public function testInvalidCustomFields2()
+    {
+        $this->expectException('Exception');
+        $this->request->setCustomFields([
+            '_test' => 'Doe',
+        ]);
+    }
+
+    public function testInvalidCustomFields3()
+    {
+        $this->expectException('Exception');
+        $this->request->setCustomFields([
+            'array' => [1, 2, 3],
+        ]);
     }
 }

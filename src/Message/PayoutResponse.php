@@ -28,33 +28,33 @@ class PayoutResponse extends AbstractResponse
 
     public function getCode()
     {
-        return (int) $this->data->retval;
+        return (int)$this->data->retval;
     }
 
     public function getMessage()
     {
-        $message = (string) $this->data->retdesc;
+        $message = (string)$this->data->retdesc;
 
         return $message ? $message : null;
     }
 
     public function getTransactionId()
     {
-        return $this->data->operation ? (string) $this->data->operation->tranid : null;
+        return $this->data->operation ? (string)$this->data->operation->tranid : null;
     }
 
     public function getTransactionReference()
     {
-        return $this->data->operation ? (string) $this->data->operation->attributes()->id : null;
+        return $this->data->operation ? (string)$this->data->operation->attributes()->id : null;
     }
 
     public function getDescription()
     {
-        return $this->data->operation ? (string) $this->data->operation->desc : null;
+        return $this->data->operation ? (string)$this->data->operation->desc : null;
     }
 
     public function getAmount()
     {
-        return $this->data->operation ? (string) $this->data->operation->amount : null;
+        return $this->data->operation ? (string)$this->data->operation->amount : null;
     }
 }
