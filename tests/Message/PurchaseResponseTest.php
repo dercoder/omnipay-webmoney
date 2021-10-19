@@ -50,8 +50,8 @@ class PurchaseResponseTest extends TestCase
             'LMI_SUCCESS_METHOD'      => '0',
             'LMI_FAIL_URL'            => 'https://www.foodstore.com/failure',
             'LMI_FAIL_METHOD'         => '0',
-            'FIELD_1'                 => '2',
-            'FIELD_2'                 => '2',
+            'FIELD_1'                 => 'test123',
+            'FIELD_2'                 => 'f34867fc226329578f4',
             'LMI_HOLD'                => '2'
         ), $response->getRedirectData());
     }
