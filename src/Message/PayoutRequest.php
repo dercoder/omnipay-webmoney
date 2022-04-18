@@ -279,7 +279,7 @@ class PayoutRequest extends AbstractRequest
     /**
      * @return Client
      */
-    private function getHttpClient()
+    protected function getHttpClient()
     {
         return new Client($this->endpoint);
     }

@@ -9,7 +9,7 @@ class GatewayTest extends GatewayTestCase
     public $sslFile;
     public $sslKey;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 

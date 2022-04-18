@@ -9,6 +9,9 @@
          processIsolation="false"
          stopOnFailure="false"
          syntaxCheck="false">
+    <php>
+        <ini name="error_reporting" value="E_ALL &amp; ~E_DEPRECATED"/>
+    </php>
     <testsuites>
         <testsuite name="WebMoney Test Suite">
             <directory>./tests/</directory>

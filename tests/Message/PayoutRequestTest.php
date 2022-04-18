@@ -12,7 +12,7 @@ class PayoutRequestTest extends TestCase
 {
     private $request;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -28,7 +28,7 @@ class PayoutRequestTest extends TestCase
         $httpClient->addSubscriber($mockPlugin);
 
         $this->request = $this->getMockBuilder(PayoutRequest::class)
-            ->setMethods(['getHttpClient'])
+            ->onlyMethods(['getHttpClient'])
             ->setConstructorArgs([$this->getHttpClient(), $this->getHttpRequest()])
             ->getMock();
 
