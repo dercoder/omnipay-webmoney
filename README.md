@@ -21,7 +21,7 @@ to your `composer.json` file:
 ```json
 {
     "require": {
-        "dercoder/omnipay-webmoney": "~4.0"
+        "dercoder/omnipay-webmoney": "^5.0"
     }
 }
 ```
