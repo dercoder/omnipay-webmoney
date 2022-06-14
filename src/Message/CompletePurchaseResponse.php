@@ -28,6 +28,10 @@ class CompletePurchaseResponse extends AbstractResponse
         if ($this->request->getTestMode() !== $this->getTestMode()) {
             throw new InvalidResponseException('Invalid test mode');
         }
+
+        if ($this->getInvoiceId() === 0) {
+            throw new InvalidResponseException('Invalid invoice ID');
+        }
     }
 
     public function isSuccessful()
@@ -43,6 +47,11 @@ class CompletePurchaseResponse extends AbstractResponse
     public function getTransactionReference()
     {
         return $this->data['LMI_SYS_TRANS_NO'];
+    }
+
+    public function getInvoiceId()
+    {
+        return (int) ($this->data['LMI_SYS_INVS_NO'] ?? 0);
     }
 
     public function getMerchantPurse()
