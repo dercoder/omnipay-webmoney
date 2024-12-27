@@ -236,7 +236,6 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     {
         switch (substr($purse, 0, 1)) {
             case 'Z':
-            case 'T':
                 return 'USD';
             case 'R':
                 return 'RUB';
@@ -252,6 +251,8 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
                 return 'BYR';
             case 'X':
                 return 'BTC';
+            case 'T':
+                return 'USDT';
             default:
                 return null;
         }
