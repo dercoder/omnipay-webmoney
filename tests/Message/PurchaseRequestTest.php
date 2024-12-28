@@ -87,6 +87,7 @@ class PurchaseRequestTest extends TestCase
         $this->assertSame('UZS', $this->request->getCurrencyByPurse('Y123428476799'));
         $this->assertSame('BYR', $this->request->getCurrencyByPurse('B123428476799'));
         $this->assertSame('BTC', $this->request->getCurrencyByPurse('X123428476799'));
+        $this->assertSame('USDT', $this->request->getCurrencyByPurse('T123428476799'));
         $this->assertNull($this->request->getCurrencyByPurse('A123428476799'));
     }
 

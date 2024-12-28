@@ -251,6 +251,8 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
                 return 'BYR';
             case 'X':
                 return 'BTC';
+            case 'T':
+                return 'USDT';
             default:
                 return null;
         }
