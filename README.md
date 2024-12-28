@@ -5,10 +5,9 @@
 [![Build Status](https://app.travis-ci.com/dercoder/omnipay-webmoney.svg?branch=master)](https://app.travis-ci.com/github/dercoder/omnipay-webmoney)
 [![Coverage Status](https://coveralls.io/repos/dercoder/omnipay-webmoney/badge.svg?branch=master&service=github)](https://coveralls.io/github/dercoder/omnipay-webmoney?branch=master)
 
-[![Latest Stable Version](https://poser.pugx.org/dercoder/omnipay-webmoney/v/stable.png)](https://packagist.org/packages/dercoder/omnipay-webmoney)
-[![Total Downloads](https://poser.pugx.org/dercoder/omnipay-webmoney/downloads.png)](https://packagist.org/packages/dercoder/omnipay-webmoney)
-[![Latest Unstable Version](https://poser.pugx.org/dercoder/omnipay-webmoney/v/unstable.png)](https://packagist.org/packages/dercoder/omnipay-webmoney)
-[![License](https://poser.pugx.org/dercoder/omnipay-webmoney/license.png)](https://packagist.org/packages/dercoder/omnipay-webmoney)
+[![Latest Stable Version](https://img.shields.io/packagist/v/dercoder/omnipay-webmoney)](https://packagist.org/packages/dercoder/omnipay-webmoney)
+[![Total Downloads](https://img.shields.io/packagist/dt/dercoder/omnipay-webmoney)](https://packagist.org/packages/dercoder/omnipay-webmoney)
+[![License](https://img.shields.io/packagist/l/dercoder/omnipay-webmoney)](https://packagist.org/packages/dercoder/omnipay-webmoney)
 
 [Omnipay](https://github.com/omnipay/omnipay) is a framework agnostic, multi-gateway payment
 processing library for PHP 7.0+. This package implements [WebMoney](https://www.webmoney.az) support for Omnipay.
