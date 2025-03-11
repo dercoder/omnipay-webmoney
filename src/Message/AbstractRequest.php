@@ -257,4 +257,16 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
                 return null;
         }
     }
+
+    public function getCurrencies()
+    {
+        if ($this->currencies === null) {
+            $this->currencies = new \Money\Currencies\AggregateCurrencies([
+                new \Money\Currencies\CryptoCurrencies(),
+                new \Money\Currencies\ISOCurrencies(),
+            ]);
+        }
+
+        return $this->currencies;
+    }
 }
